@@ -1,0 +1,17 @@
+.container-fluid .d-flex div {
+    padding: 20px;
+}
+
+.container-fluid .d-flex div img {
+    width: 200px;
+    height: 200px;
+}
+
+.container-fluid .d-flex div p {
+    text-align: center;
+}
+
+.container-fluid .d-flex div button {
+    margin: 0 auto;
+    display: block;
+}
