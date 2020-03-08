@@ -2,7 +2,7 @@
 // navbardrop.addEventListener('click', showselected)
 
 let item = document.querySelector('.container-fluid .d-flex')
-let imageArray = [{
+let tshirtArray = [{
         img: 'images/tshirt1.jpeg',
         name: 'Black t-shirt',
         size: 'M size',
@@ -18,7 +18,7 @@ let imageArray = [{
 
 function showselected() {
     item.textContent = '';
-    imageArray.forEach(element => {
+    tshirtArray.forEach(element => {
         let div = document.createElement('div')
         let img = document.createElement('img')
         let details = document.createElement('p')
@@ -39,8 +39,13 @@ function showselected() {
 }
 
 let cartUl = document.querySelector('.cart ul');
+let total = document.querySelector('.total')
+let pricearray = [];
+let newArray = []
+
 
 function addItemsToCart(element) {
+
     total.innerHTML = '';
 
     let li = document.createElement('li');
@@ -53,27 +58,32 @@ function addItemsToCart(element) {
     li.innerHTML = `<div>${element.name}</div>
     <div> ${element.price}dkk</div>`
 
+
+    pricearray.push(element.price);
+    let number = pricearray.map(Number)
+
+    let totalSum = number.reduce((total, num) => total + num, 0)
+    p.innerHTML = `Total price: ${totalSum}dkk`
+        // let newnumber;
+        // let finalsum = totalSum - newnumber
     deleteButton.addEventListener('click', () => {
         cartUl.removeChild(li)
-        viewTotal()
+        let deletedPrice = Number(element.price)
+        let finalsum = totalSum - deletedPrice
+
+        p.innerHTML = `Total price: ${finalsum}dkk`
+
     })
-    viewTotal()
-        // pricearray.push(element.price);
-        // let number = pricearray.map(Number)
-        // let totalSum = number.reduce((total, num) => total + num, 0)
-        // p.innerHTML = `Total price: ${totalSum}dkk`
+
     cartUl.appendChild(li);
     li.appendChild(deleteButton)
     total.appendChild(p)
 }
 
 
-let pricearray = [];
-let total = document.querySelector('.total')
-
-function viewTotal(element) {
-    pricearray.push(element.price);
-    let number = pricearray.map(Number)
-    let totalSum = number.reduce((total, num) => total + num, 0)
-    p.innerHTML = `Total price: ${totalSum}dkk`
-}
+// function deleteItem(element) {
+//         // pricearray.splice(1, 1)
+//         // console.log(pricearray);
+//         // let filtered = pricearray.filter((value) => value === element.price);
+//         // console.log(filtered);
+// }
