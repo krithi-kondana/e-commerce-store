@@ -15,3 +15,28 @@
     margin: 0 auto;
     display: block;
 }
+
+section.cart {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    overflow-y: auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+section.cart ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+section.cart ul>li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+}
