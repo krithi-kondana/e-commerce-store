@@ -1,38 +1,23 @@
-// let navbardrop = document.getElementById('shirts')
-// navbardrop.addEventListener('click', showselected)
+let products = document.querySelector('.container-fluid .d-flex')
 
-let item = document.querySelector('.container-fluid .d-flex')
-let tshirtArray = [{
-        img: 'images/tshirt1.jpeg',
-        name: 'Black t-shirt',
-        size: 'M size',
-        price: '100'
-    },
-    {
-        img: 'images/tshirt2.jpeg',
-        name: 'Grey t-shirt',
-        size: 'S size',
-        price: '200'
-    }
-]
 
-function showselected() {
-    item.textContent = '';
-    tshirtArray.forEach(element => {
+function renderProducts() {
+    products.textContent = '';
+    menTshirtArray.forEach(tshirt => {
         let div = document.createElement('div')
         let img = document.createElement('img')
         let details = document.createElement('p')
         let button = document.createElement('button');
 
-        details.innerHTML = `<strong>${element.name}<strong> <br> ${element.size} <br> ${element.price}dkk`
-        img.src = element.img;
+        details.innerHTML = `<strong>${tshirt.name}<strong> <br> ${tshirt.size} <br> ${tshirt.price}dkk`
+        img.src = tshirt.img;
         button.innerText = 'Add to cart';
 
-        item.appendChild(div)
+        products.appendChild(div)
         div.append(img, details, button)
 
         button.addEventListener("click", () => {
-            addItemsToCart(element)
+            addItemsToCart(tshirt)
         })
 
     })
@@ -40,11 +25,10 @@ function showselected() {
 
 let cartUl = document.querySelector('.cart ul');
 let total = document.querySelector('.total')
-let pricearray = [];
-let newArray = []
+let priceArray = [];
 
 
-function addItemsToCart(element) {
+function addItemsToCart(tshirt) {
 
     total.innerHTML = '';
 
@@ -55,21 +39,27 @@ function addItemsToCart(element) {
 
 
 
-    li.innerHTML = `<div>${element.name}</div>
-    <div> ${element.price}dkk</div>`
+    li.innerHTML = `<div>${tshirt.name}</div>
+    <div> ${tshirt.price}dkk</div>`
 
 
-    pricearray.push(element.price);
-    let number = pricearray.map(Number)
+    priceArray.push(tshirt.price);
+    let priceAsNumber = priceArray.map(Number)
 
-    let totalSum = number.reduce((total, num) => total + num, 0)
-    p.innerHTML = `Total price: ${totalSum}dkk`
-        // let newnumber;
-        // let finalsum = totalSum - newnumber
+    let totalPrice = priceAsNumber.reduce((total, num) => total + num, 0)
+    p.innerHTML = `Total price: ${totalPrice}dkk`
+    console.log('totalprice', totalPrice);
+
+
     deleteButton.addEventListener('click', () => {
         cartUl.removeChild(li)
-        let deletedPrice = Number(element.price)
-        let finalsum = totalSum - deletedPrice
+        let deletedProductPrice = Number(tshirt.price)
+        totalPrice = priceAsNumber.reduce((total, num) => total + num, 0)
+
+        let finalsum = totalPrice - deletedProductPrice
+        console.log('totalprice', totalPrice);
+        console.log('deletedprice', deletedProductPrice);
+        console.log('finalsum', finalsum);
 
         p.innerHTML = `Total price: ${finalsum}dkk`
 
