@@ -26,7 +26,7 @@ function renderProducts() {
 let cartUl = document.querySelector('.cart ul');
 let total = document.querySelector('.total')
 let priceArray = [];
-
+let newArray = []
 
 function addItemsToCart(tshirt) {
 
@@ -37,31 +37,34 @@ function addItemsToCart(tshirt) {
     let deleteButton = document.createElement('button')
     deleteButton.innerText = 'Delete';
 
-
-
     li.innerHTML = `<div>${tshirt.name}</div>
     <div> ${tshirt.price}dkk</div>`
 
-
     priceArray.push(tshirt.price);
+
     let priceAsNumber = priceArray.map(Number)
 
     let totalPrice = priceAsNumber.reduce((total, num) => total + num, 0)
+
     p.innerHTML = `Total price: ${totalPrice}dkk`
-    console.log('totalprice', totalPrice);
+    console.log(totalPrice);
 
 
     deleteButton.addEventListener('click', () => {
-        cartUl.removeChild(li)
-        let deletedProductPrice = Number(tshirt.price)
-        totalPrice = priceAsNumber.reduce((total, num) => total + num, 0)
+        cartUl.removeChild(li);
 
-        let finalsum = totalPrice - deletedProductPrice
+        let deletedProductPrice = Number(tshirt.price)
+        newArray.push(deletedProductPrice);
+        let lastItem = newArray[newArray.length - 1]
+
+
+
+        let result = totalPrice - lastItem
+        p.innerHTML = `Total price: ${result}dkk`
+
+        // let finalsum = totalPrice - deletedProductPrice
         console.log('totalprice', totalPrice);
         console.log('deletedprice', deletedProductPrice);
-        console.log('finalsum', finalsum);
-
-        p.innerHTML = `Total price: ${finalsum}dkk`
 
     })
 
