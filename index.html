@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>e-commerce-store</title>
 </head>
 
 <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="#">Logo</a>
 
+        <nav class="navbar navbar-expand-sm">
+            <!-- Brand -->
+            <img class="navbar-brand" src='images/logo.jpg' alt='e-commerce today logo'>
             <!-- Links -->
             <ul class="navbar-nav">
-                <li class="nav-item dropdown ml-5">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Men</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" id="shirts" onclick="renderProducts()">T-shirts</a>
-                        <a class="dropdown-item" href="#">Jeans</a>
+                        <a class="dropdown-item" href="#" id="tshirts" onclick="renderProducts(this.id)">T-shirts</a>
+                        <a class="dropdown-item" href="#" id="jeans" onclick="renderProducts(this.id)">Jeans</a>
                         <a class="dropdown-item" href="#">Shoes</a>
                     </div>
                 </li>
@@ -47,19 +49,58 @@
                     </div>
                 </li>
             </ul>
+
+            <input class="form-control" type="text" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
+            <a class="bag" href="#"><i class="fa fa-fw fa-shopping-cart"></i></a>
+
         </nav>
+
     </div>
 
+
     <div class="container-fluid">
-        <div class="d-flex p-3">
+        <div id="cover-image" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#cover-image" data-slide-to="0" class="active"></li>
+                <li data-target="#cover-image" data-slide-to="1"></li>
+                <li data-target="#cover-image" data-slide-to="2"></li>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/image1.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/image2.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/image3.jpg" alt="">
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#cover-image" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#cover-image" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap p-3">
         </div>
     </div>
 
     <section class="cart">
-        <h2>Your shopping cart</h2>
+        <h4></h4>
         <ul></ul>
-        <div class="total">
-        </div>
+        <div class="total"></div>
         <ul></ul>
     </section>
 
