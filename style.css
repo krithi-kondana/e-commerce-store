@@ -61,7 +61,7 @@ section.cart {
     /* position: fixed; */
     bottom: 12px;
     right: 12px;
-    width: 300px;
+    width: 500px;
     height: 200px;
     /* background-color: white; */
     overflow-y: auto;
@@ -80,4 +80,8 @@ section.cart ul>li {
     display: flex;
     justify-content: space-between;
     padding: 6px;
+}
+
+section.cart #qty {
+    width: 40px;
 }

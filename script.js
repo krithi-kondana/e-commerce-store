@@ -3,8 +3,9 @@ let container = document.querySelector('.container-fluid .d-flex')
 
 
 function renderProducts(clickedId) {
-    let products = [];
     container.textContent = '';
+    let products = [];
+
     if (clickedId === 'tshirts') {
         products.push(...menTshirtArray)
     } else if (clickedId === 'jeans') {
@@ -31,70 +32,90 @@ function renderProducts(clickedId) {
 }
 
 let cartUl = document.querySelector('.cart ul');
-let total = document.querySelector('.total')
+let total = document.querySelector('.total p')
 let h4 = document.querySelector('.cart h4')
 let priceArray = [];
-let newArray = []
+let totalPrice;
+let deleteButton;
+let cartItems;
 
 function addItemsToCart(item) {
     total.innerHTML = '';
-    // section.innerHTML = `<h4>Your cart</h4>`
-    let li = document.createElement('li');
-    let p = document.createElement('p')
     h4.innerText = 'Your cart';
-    let deleteButton = document.createElement('button')
-    deleteButton.innerText = 'Delete';
-    // let input = document.createElement('input')
-    // input.type = 'number';
-    // input.value = '';
-    // input.id = 'quantity';
-    // let quantity = input.value;
+
+    cartItems = []
+
+    cartItems.push(item);
+
+    cartItems.forEach(item => {
+        let cartli = document.createElement('li');
+
+        let quantity = document.createElement('select')
+        quantity.setAttribute("id", "qty");
+        // quantity.id = 'qty'
+        // let selectId = document.getElementById('qty')
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        deleteButton = document.createElement('button')
+        deleteButton.innerText = 'Delete';
+        let option;
+        numbers.forEach(number => {
+            option = document.createElement("option");
+            quantity.appendChild(option)
+            option.value = number;
+            option.text = number
+        })
 
 
-    li.innerHTML = `<div>${item.name}</div>
-    <div> ${item.price}dkk</div>`
+        cartli.innerHTML = `<div>${item.name}</div>
+        <div> ${item.price}dkk</div>`
 
-    priceArray.push(item.price);
+        quantity.addEventListener('change', () => {
+            if (quantity.value === '1') {
+                item.price
+            } else {
+                item.price = item.price * Number(quantity.value)
+            }
+            return item.price
 
-    let priceAsNumber = priceArray.map(Number)
-
-    let totalPrice = priceAsNumber.reduce((total, num) => total + num, 0)
-
-    p.innerHTML = `Total price: ${totalPrice}dkk`
-    console.log(totalPrice);
-
-
-    deleteButton.addEventListener('click', () => {
-        cartUl.removeChild(li);
-
-        let deletedProductPrice = Number(item.price)
-        newArray.push(deletedProductPrice);
-        let lastItem = newArray[newArray.length - 1]
+        })
 
 
 
-        let result = totalPrice - lastItem
-        p.innerHTML = `Total price: ${result}dkk`
+        // console.log('carts', cartItems);
 
-        // let finalsum = totalPrice - deletedProductPrice
-        console.log('totalprice', totalPrice);
-        console.log('deletedprice', deletedProductPrice);
+        priceArray.push(item.price);
+
+        let priceAsNumber = priceArray.map(Number)
+
+        totalPrice = priceAsNumber.reduce((total, num) => total + num, 0)
+
+        total.innerHTML = `Total price: ${totalPrice}dkk`
+        console.log(totalPrice);
+
+
+        cartUl.appendChild(cartli);
+        // cartli.append(deleteButton);
+        cartli.append(quantity, deleteButton);
+
+        deleteButton.addEventListener('click', () => {
+            cartUl.removeChild(cartli);
+            // console.log('remains', cartItems);
+
+            let deletedProductPrice = Number(item.price)
+
+            totalPrice = totalPrice - deletedProductPrice
+            total.innerHTML = `Total price: ${totalPrice}dkk`
+
+            // console.log('totalprice', totalPrice);
+            // console.log('deletedprice', deletedProductPrice);
+        })
 
     })
-    cartUl.appendChild(li);
-    li.append(deleteButton)
-    total.appendChild(p)
+
 }
+
+
 
 // let bag = document.querySelector('.bag')
 // bag.addEventListener('click', showCart)
-
-
-
-
-// function deleteItem(element) {
-//         // pricearray.splice(1, 1)
-//         // console.log(pricearray);
-//         // let filtered = pricearray.filter((value) => value === element.price);
-//         // console.log(filtered);
-// }
