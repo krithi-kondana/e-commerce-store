@@ -1,3 +1,33 @@
+body {
+    background-color: white;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.navbar-brand {
+    width: 150px;
+    height: 80px;
+}
+
+.navbar ul li .nav-link {
+    color: black;
+}
+
+.form-control {
+    width: 200px;
+    margin: auto;
+}
+
+.carousel-item {
+    height: 400px;
+}
+
+.carousel-inner img {
+    width: 100%;
+}
+
 .container-fluid .d-flex div {
     padding: 20px;
 }
@@ -16,15 +46,26 @@
     display: block;
 }
 
+.bag {
+    color: cadetblue;
+    font-size: 40px;
+    top: 15px;
+    right: 15px;
+}
+
+.bag:hover {
+    color: rgb(112, 188, 231);
+}
+
 section.cart {
-    position: fixed;
+    /* position: fixed; */
     bottom: 12px;
     right: 12px;
     width: 300px;
     height: 200px;
-    background-color: white;
+    /* background-color: white; */
     overflow-y: auto;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); */
     padding: 12px;
     border-radius: 8px;
 }
